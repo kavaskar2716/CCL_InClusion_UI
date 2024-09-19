@@ -1,0 +1,689 @@
+
+<h3 class="p-2 mb-3">
+    <span
+      style="display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: flex-end;color: rgb(43 46 118) !important;">
+      <mat-icon aria-label=" home_icon" *ngIf="PlantId == '1' " routerLink="/dashboard"
+        style="color: rgb(43 46 118) !important;display: flex;">home
+      </mat-icon>
+      <mat-icon aria-label=" home_icon" *ngIf="PlantId == '2' " routerLink="/trading-dashboard"
+        style="color: rgb(43 46 118) !important;display: flex;">home
+      </mat-icon>
+      <mat-icon aria-label=" home_icon" *ngIf="PlantId == '3' " routerLink="/Guest"
+        style="color: rgb(43 46 118) !important;display: flex;">home
+      </mat-icon> / BIS INWARD
+    </span>
+  </h3>
+  <button type="button" (click)="goToBottom()" *ngIf="content.scrollHeight > 200" class="gotobotm" style="position: absolute;
+    right: 6px;
+    background-color: #304993;
+    padding: 10px 14px;
+    z-index: 99;
+    top: 10px;
+    border: 0;
+    border-radius: 16px;"><i class="fa fa-arrow-down" aria-hidden="true" style="color:#fff;"></i></button>
+  <div class="container-fluid neewform" #content style="background-color: #fff !important;padding: 10px;">
+
+    <ngx-spinner type="ball-scale-multiple">
+
+
+      <span style="font-size:20px;color:#fff;"> <img src="./assets/Image/loadi.gif" class="clipart2" style="width: 20%;height: 70px;text-align:center"><br>Please Be Patience. Data is Processing !!!</span>
+    </ngx-spinner>
+    <mat-list>
+      <mat-list-item>
+        <mat-tab-group>
+          <mat-tab label="BIS INWARD">
+            <mat-accordion class="example-headers-align" multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <button mat-button class="cola">
+                    <mat-icon class="importe"> import_export
+                    </mat-icon>Create BIS
+                  </button>
+                </mat-expansion-panel-header>
+                <div id="viewa" class="">
+                  <div class="seven">
+                    <h1>BIS INWARD</h1>
+                  </div>
+                  <form  (submit)="onSubmit()"name="formgroup" #myForm="ngForm">
+                    <div class="rowform">
+                      <div class="row" style="position:relative;top:-15px;">
+                        <input hidden class="did-floating-input" type="text" placeholder=" " name="WIDD"
+                          [(ngModel)]="form.WIDD">
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                              <select class="did-floating-select" required placeholder="categoryy"
+                               name="categoryy" [(ngModel)]="form.categoryy">
+                                <option value="">Select Category
+                                </option>
+                                <option *ngFor="let Catg of Get_InwardCategorys" [ngValue]="Catg.category">
+                                  {{Catg.category}}
+                                </option>
+
+                              </select>
+                            </div>
+                            <label class="did-floating-label indiass" style="left: 0%;">
+                              <i class="fa fa-asterisk" aria-hidden="true">
+                              </i>Category
+                            </label>
+                          </div>
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select" name="FYY" [(ngModel)]="form.FYY">
+                              <option value="">
+                                <i class="fa fa-asterisk" aria-hidden="true">
+                                </i>Select FY
+                              </option>
+
+                             <option value="FY22-23">FY22-23</option>
+                             <option value="FY23-24">FY23-24</option>
+                             <option value="FY24-25">FY24-25</option>
+                            </select>
+
+                          </div>
+                          <label class="did-floating-label indiass"  style="left: 28%;">
+                            <i class="fa fa-asterisk" aria-hidden="true">
+                            </i>FY
+                          </label>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="did-floating-label-content">
+
+                              <input class="did-floating-input" type="date" placeholder=" " name="Date_of_receiptt"
+                                [(ngModel)]="form.Date_of_receiptt">
+                              <label class="did-floating-label">
+                                <i class="fa fa-asterisk" aria-hidden="true">
+                                </i>Date of Receipt
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+
+                              <input class="did-floating-input " required type="text" placeholder=" " name="Productt"
+                                [(ngModel)]="form.Productt">
+                              <label class="did-floating-label">
+                                <i class="fa fa-asterisk" aria-hidden="true">
+                                </i>Product
+                              </label>
+                            </div>
+                          </div>
+
+
+
+                      </div>
+                    </div>
+                    <div class="rowform">
+                      <div class="row" style="position: relative;top: -15px;">
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+
+                              <select class="did-floating-select " required placeholder="R_Number " name="Samplee"
+                                [(ngModel)]="form.Samplee">
+                                <option *ngFor="let st of Get_Inwardsamples" [ngValue]="st.sample">
+                                  {{st.sample}}
+                                </option>
+
+
+                              </select>
+                              <label class="did-floating-label" style="    position: relative;
+                                                                        top: -47px;">
+                                <i class="fa fa-asterisk" aria-hidden="true">
+                                </i>Sample
+                              </label>
+                            </div>
+                          </div>
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                          <div class="did-floating-label-content">
+
+                            <input class="did-floating-input" required type="text" placeholder=" " name="MTMM"
+                              [(ngModel)]="form.MTMM">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true">
+                              </i>MTM
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="Serial_noo"
+                              [(ngModel)]="form.Serial_noo">
+
+                            <label class="did-floating-label">Serial No
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="Engg_Lab_Serial_noo"
+                              [(ngModel)]="form.Engg_Lab_Serial_noo">
+
+                            <label class="did-floating-label">Engg Lab Serial number
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="Waybill_noo"
+                              [(ngModel)]="form.Waybill_noo">
+
+                            <label class="did-floating-label">Waybill Number
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+
+                              <select class="did-floating-select " required name="Incotermss"
+                                [(ngModel)]="form.Incotermss">
+
+                                <option value="CIP">CIP</option>
+                                 <option value="CPT">CPT</option>
+                                 <option value="DAP">DAP</option>
+                                 <option value="DPU">DPU</option>
+                                 <option value="DDP">DDP</option>
+                                 <option value="EXW">EXW</option>
+                                 <option value="FCA">FCA</option>
+                                 <option value="CFR">CFR</option>
+                                 <option value="CIF">CIF</option>
+                                 <option value="FAS">FAS</option>
+                                 <option value="FOB">FOB</option>
+
+                              </select>
+                              <label class="did-floating-label" style="    position: relative;
+                                                                        top: -47px;">
+                                <i class="fa fa-asterisk" aria-hidden="true">
+                                </i>Incoterms
+                              </label>
+                            </div>
+                          </div>
+
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select " required name="Asset_Typee"
+                            [(ngModel)]="form.Asset_Typee">
+
+                            <option value="GAMS">GAMS</option>
+                             <option value="Others">Others</option>
+                          </select>
+                            <label class="did-floating-label">Asset Type
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="GAMS_Asset_Ownerr"
+                                [(ngModel)]="form.GAMS_Asset_Ownerr">
+                              <label class="did-floating-label">GAMS_Asset_Ownerr
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories' || this.form.Asset_Typee =='Others'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="GAMS_Asset_IDD"
+                                [(ngModel)]="form.GAMS_Asset_IDD">
+                              <label class="did-floating-label">GAMS_Asset_IDD
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories' && this.form.Asset_Typee =='Others' ">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Challan_numberr"
+                                [(ngModel)]="form.Challan_numberr">
+                              <label class="did-floating-label">Challan_numberr
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" >
+                            <div class="did-floating-label-content">
+                              <select class="did-floating-select " required name="Accessoriess"
+                              [(ngModel)]="form.Accessoriess">
+                              <option *ngFor="let ac of Get_InwardAccessoriess" [ngValue]="ac.accessories">
+                                {{ac.accessories}}
+                              </option>
+
+                            </select>
+                              <label class="did-floating-label">Accessories
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Modell"
+                                [(ngModel)]="form.Modell">
+                              <label class="did-floating-label">Model
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Part_numberr"
+                                [(ngModel)]="form.Part_numberr">
+                              <label class="did-floating-label">Part Number
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Qtyy"
+                                [(ngModel)]="form.Qtyy">
+                              <label class="did-floating-label">Qty
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+                                <select class="did-floating-select " required name="Working_Conditionn"
+                                [(ngModel)]="form.Working_Conditionn">
+
+                                 <option value="Working">Working</option>
+                                    <option value="Not-Working">Not-Working</option>
+                              </select>
+                              <label class="did-floating-label">Working Condition
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Storage_Locationn"
+                                [(ngModel)]="form.Storage_Locationn">
+                              <label class="did-floating-label">Storage Location
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Remarkss"
+                                [(ngModel)]="form.Remarkss">
+                              <label class="did-floating-label">Remarks
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+                                <select class="did-floating-select " required name="Received_Byy"
+                                [(ngModel)]="form.Received_Byy">
+
+                                 <option value="Thiyagarajan">Thiyagarajan</option>
+                                    <option value="Novah">Novah</option>
+                                    <option value="Muguthan">Muguthan</option>
+                                    <option value="Sakthivel">Sakthivel</option>
+                                    <option value="Muguthan">Muguthan</option>
+                                    <option value="Karthikeyan">Karthikeyan</option>
+
+
+                              </select>
+                              <label class="did-floating-label">Received
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="did-floating-label-content">
+                                <select class="did-floating-select " required name="statuss"
+                                [(ngModel)]="form.statuss">
+
+                                 <option value="Initial">Initial</option>
+                                    <option value="LAB">LAB</option>
+                                    <option value="BIS ASSET">BIS ASSET</option>
+                                    <option value="TE LAB">TE LAB</option>
+                                    <option value="IT">IT</option>
+                                    <option value="ME">ME</option>
+                                    <option value="Scraped">Scraped</option>
+
+
+                              </select>
+                              <label class="did-floating-label">Status
+                              </label>
+                            </div>
+                          </div>
+
+                          <div class="col-md-3" *ngIf="this.form.statuss=='LAB'">
+                            <div class="did-floating-label-content">
+                                <select class="did-floating-select " required name="Product_Statuss"
+                                [(ngModel)]="form.Product_Statuss">
+
+
+                                    <option value="Live">Live</option>
+                                    <option value="EOL">EOL</option>
+
+
+
+                              </select>
+                              <label class="did-floating-label">Product Status
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.statuss=='LAB'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Lab_Detailss"
+                                [(ngModel)]="form.Lab_Detailss">
+                              <label class="did-floating-label">Lab_Details
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.statuss=='LAB'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="Technical_leadd"
+                                [(ngModel)]="form.Technical_leadd">
+                              <label class="did-floating-label">Technical_lead
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-3" *ngIf="this.form.statuss=='LAB'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="date" placeholder=" " name="Date_of_returnn"
+                                [(ngModel)]="form.Date_of_returnn">
+                              <label class="did-floating-label">Date_of_return
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-md-6" *ngIf="this.form.categoryy !=='Accessories'">
+                            <div class="did-floating-label-content">
+                              <input class="did-floating-input" type="text" placeholder=" " name="History_Logss"
+                                [(ngModel)]="form.History_Logss">
+                              <label class="did-floating-label">History_Logs
+                              </label>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row" style="position: relative;top: -25px;">
+
+                        <div class="col-md-4">
+
+                          <label class="labelm1">Inwards Doc
+                          </label>
+                          <div class="file-upload">
+                            <input #Inwards_DocssRef type="file" name="Inwards_Docss"
+                              (change)="( form.Inwards_Docss =Inwards_DocssRef.files )"
+                              accept=".jpg,.png,.pdf,.csv,.xlsx,.zip,.rar,.doc" />
+                          </div>
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <label class="labelm1">Incoterms Doc
+                            </label>
+                            <div class="file-upload">
+                              <input #incoterms_DocssRef type="file" name="incoterms_Docss"
+                                (change)="( form.incoterms_Docss = incoterms_DocssRef.files )"
+                                accept=".jpg,.png,.pdf,.csv,.xlsx,.zip,.rar,.doc" />
+                            </div>
+                          </div>
+                          <div class="col-4" style="margin-top:27px;">
+                            <button class="btn btn-default" >Submit</button>
+                          </div>
+
+                      <br>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <div class="seven sub" style="top:-35px;margin:0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="did-floating-label-content">
+                          <select class="did-floating-select" required name="statuss" [(ngModel)]="form.statuss" (change)="onchangestatus()">
+                            <option value="Initial">Initial</option>
+                            <option value="LAB">LAB</option>
+                            <option value="BIS ASSET">BIS ASSET</option>
+                            <option value="TE LAB">TE LAB</option>
+                            <option value="IT">IT</option>
+                            <option value="ME">ME</option>
+                            <option value="Scraped">Scraped</option>
+                          </select>
+                          <label class="did-floating-label">Status
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <button class="btn btn-defualt" (click)="sendmail()" style="padding: 10px;
+            height: 37px;">Send Mail</button>
+                      </div>
+                  </div>
+
+            </div>
+
+            <button *ngIf="!allRowsSelected" (click)="selectAllRows()" class="allrow">
+              <input type="checkbox" /></button>
+            <button *ngIf="allRowsSelected" (click)="deselectAllRows()" class="allrow">
+              <input type="checkbox" checked /></button>
+
+              <ag-grid-angular
+          style="width: 100%; height: 300px;top: -16%;
+          position: relative;"
+          class="ag-theme-balham"
+          [rowData]="BISInwarddetails"
+          [columnDefs]="columnDefs"
+          [rowSelection]="'multiple'"
+          [rowMultiSelectWithClick]="true"
+          [defaultColDef]="defaultColDef"
+          (selectionChanged)="sendSelectedRows()"
+          (gridReady)="onGridReadybu($event)"
+          [suppressRowClickSelection]="false"
+        ></ag-grid-angular>
+
+          </mat-tab>
+          <mat-tab label="RM MATERIAL">
+            <mat-accordion class="example-headers-align" #accordion1 multi>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <button mat-button class="cola">
+                    <mat-icon class="importe"> import_export
+                    </mat-icon>Create BIS
+                  </button>
+                </mat-expansion-panel-header>
+                <div id="viewa" class="">
+                  <div class="seven">
+                    <h1>BIS INWARD</h1>
+                  </div>
+
+                  <form (submit)="onSubmitRRM()" name="formgroup" #myForm="ngForm">
+                    <div class="rowform">
+                      <div class="row" style="position:relative;top:-15px;">
+                        <input hidden class="did-floating-input" type="text" placeholder=" " name="RIDD" [(ngModel)]="rform.RIDD">
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select" required placeholder="Category" name="categoryy" [(ngModel)]="rform.Categoryy">
+                              <option value="">Select Category</option>
+                              <option *ngFor="let Catg of Get_InwardCategorys" [ngValue]="Catg.category">{{ Catg.category }}</option>
+                            </select>
+                          </div>
+                          <label class="did-floating-label indiass" style="left: 0%;">
+                            <i class="fa fa-asterisk" aria-hidden="true"></i>Category
+                          </label>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select" required name="FYY" [(ngModel)]="rform.FYY">
+                              <option value="">Select FY</option>
+                              <option value="FY22-23">FY22-23</option>
+                              <option value="FY23-24">FY23-24</option>
+                              <option value="FY24-25">FY24-25</option>
+                            </select>
+                          </div>
+                          <label class="did-floating-label indiass" style="left: 28%;">
+                            <i class="fa fa-asterisk" aria-hidden="true"></i>FY
+                          </label>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="date" placeholder=" " name="Date_of_Inventoryy" [(ngModel)]="rform.Date_of_Inventoryy">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Date of Inventory
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" required type="text" placeholder=" " name="Productt" [(ngModel)]="rform.Productt">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Product
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="rowform">
+                      <div class="row" style="position: relative;top: -15px;">
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select" required name="Accessoriess" [(ngModel)]="rform.Accessoriess">
+                              <option *ngFor="let st of Get_InwardAccessoriess" [ngValue]="st.accessories">{{ st.accessories }}</option>
+                            </select>
+                            <label class="did-floating-label" style="position: relative; top: -47px;">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Accessories
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" required type="text" placeholder=" " name="Modell" [(ngModel)]="rform.Modell">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Model
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" required type="text" placeholder=" " name="Part_numberr" [(ngModel)]="rform.Part_numberr">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Part Number
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" required type="text" placeholder=" " name="Qtyy" [(ngModel)]="rform.Qtyy">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Qty
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" required type="text" placeholder=" " name="Engg_Lab_Serial_numberr" [(ngModel)]="rform.Engg_Lab_Serial_numberr">
+                            <label class="did-floating-label">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Engg Lab Serial Number
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="Reasonn" [(ngModel)]="rform.Reasonn">
+                            <label class="did-floating-label">Reason</label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="rform.Categoryy !== 'Accessories'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="RORQQ" [(ngModel)]="rform.RORQQ">
+                            <label class="did-floating-label">RORQQ</label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="Unit_pricee" [(ngModel)]="rform.Unit_pricee">
+                            <label class="did-floating-label">Unit Price</label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <select class="did-floating-select" required name="Tax_Statuss" [(ngModel)]="rform.Tax_Statuss">
+                              <option value="">Select Tax Status</option>
+                              <option value="Applicable">Applicable</option>
+                              <option value="Not_Applicable">Not Applicable</option>
+
+                            </select>
+                            <label class="did-floating-label indiass" style="left: 28%;">
+                              <i class="fa fa-asterisk" aria-hidden="true"></i>Tax Status
+                            </label>
+                          </div>
+
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Tax_Statuss == 'Applicable'">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="text" placeholder=" " name="rform.Finnace_remarkss" [(ngModel)]="rform.Finnace_remarkss">
+                            <label class="did-floating-label">Finance Remarks</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="rform.Tax_Statuss == 'Not_Applicable'">
+                          <div class="did-floating-label-content">
+                            <div class="file-upload">
+                              <input #Inventory_approvallRef type="file" name="Inventory_approvall" (change)="rform.Inventory_approvall = Inventory_approvallRef.files" accept=".jpg,.png,.pdf,.csv,.xlsx,.zip,.rar,.doc" />
+                              <label class="did-floating-label" style="top: -14px;">Inventory Approval</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+
+                            <select class="did-floating-select" required name="Statuss" [(ngModel)]="rform.Statuss">
+                              <option value="">Select Status</option>
+                              <option value="WIP">WIP</option>
+                              <option value="Closed">Closed</option>
+
+                            </select>
+                            <label class="did-floating-label">Status</label>
+
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <input class="did-floating-input" type="date" placeholder=" " name="Tax_paid_datee" [(ngModel)]="rform.Tax_paid_datee">
+                            <label class="did-floating-label">Tax Paid Date</label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                          <div class="did-floating-label-content">
+                            <div class="file-upload">
+                              <input #Duty_UploaddRef type="file" name="Duty_Uploadd" (change)="rform.Duty_Uploadd =Duty_UploaddRef.files" accept=".jpg,.png,.pdf,.csv,.xlsx,.zip,.rar,.doc" />
+                              <label class="did-floating-label" style="top: -15px;">Duty Upload</label>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row" style="position: relative;top: -25px;">
+                      <div class="col-4" style="margin-top:27px;">
+                        <button class="btn btn-default">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+          <ag-grid-angular
+          style="width: 100%; height: 300px"
+          class="ag-theme-balham"
+          [rowData]="getRMMaterial"
+          [columnDefs]="columnDefR"
+          [defaultColDef]="defaultColDef"
+          (gridReady)="onGridReadyR($event)"
+          [suppressRowClickSelection]="false"
+        ></ag-grid-angular>
+          </mat-tab>
+          </mat-tab-group>
+          </mat-list-item>
+          </mat-list>
+
+  </div>

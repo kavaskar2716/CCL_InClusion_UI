@@ -1,0 +1,132 @@
+<div class="d-flex flex-column flex-root" style="margin-bottom:0%;">
+
+  <div
+    class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed">
+
+    <div class="row">
+      <div class="col-md-7" style="text-align:center;    padding-left: 0px;">
+
+        <img src="assets/Image/back.jpg" id="biimg" class="buree" style="width: 173.6%;height:504px;
+position: relative;
+top: -2px;">
+
+      </div>
+      <div class="col-md-5">
+        <div class="d-flex  flex-column flex-column-fluid p-10 pb-lg-20">
+
+          <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto"
+            style="background-color: #2a2a72;background-image: linear-gradient(45deg, #3E8DDD , #2a2a72 ) !important;width:300px;">
+            <h2 class="sginin">Sign In <span class="" title="SPOC Info" style="color: #fff !important;    float: right;
+        " data-bs-toggle="modal" data-bs-target="#myModalBISQuery"><i class="fa fa-info-circle" aria-hidden="true"
+                  style="font-size: 22px;
+          color: #fff;position: relative;
+          top: -22px;"></i></span></h2>
+            <form (ngSubmit)="login();openFullscreen();" #form="ngForm" class="form w-100" novalidate="novalidate"
+              id="kt_sign_in_form" action="#">
+
+              <div class="fv-row mb-10">
+
+                <select class="form-control form-control-lg form-control-solid  form-select" name="Plant" id="Plant"
+                  value="" [(ngModel)]="model.Plant" (change)="changeCity($event)">
+                  <option selected value="" disabled>SELECT PLANT
+                  </option>
+                  <option value="1">PONDY
+                  </option>
+                  <option value="2">TRADING
+                  </option>
+                </select>
+              </div>
+              <div class="fv-row mb-10">
+
+                <input [disabled]="inputDisabled" class="form-control form-control-lg form-control-solid" type="text"
+                  id="UserID" name="UserID" placeholder="UserName" [(ngModel)]="model.UserID" required
+                  autocomplete="off" />
+              </div>
+              <div class="fv-row mb-10">
+                <div class="d-flex flex-stack">
+
+                </div>
+                <input [disabled]="inputDisabled" class="form-control form-control-lg form-control-solid"
+                  type="password" name="password" placeholder="Password" [(ngModel)]="model.password" required
+                  autocomplete="off" />
+              </div>
+              <div class="text-center">
+                <div class="button-container">
+                  <div class="spinner-container" *ngIf="loading">
+                    <mat-spinner diameter="24">
+                    </mat-spinner>
+                  </div>
+                  <button type="submit" mat-raised-button id="kt_button_1" (click)="load()"
+                    class="btn btn-lg btn-primary w-100 mb-5" [disabled]="submitted || !form.valid">
+                    <span class="indicator-label" title="AD User">
+                      <mat-icon class="account">input
+                      </mat-icon>Login
+                    </span>
+                  </button>
+
+
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+
+        </div>
+        <div class="modal" id="myModalBISQuery">
+          <div class="modal-dialog">
+            <div class="modal-content" style="background: transparent;padding-top: 17%;box-shadow: none;">
+              <!-- Modal Header -->
+
+              <div class="row" style="position: relative;
+          top: 21%;">
+                <div class="col-md-12 right11" style="padding: 0px 25% 5%;">
+                  <h5 class="owner" style="border-bottom:1px solid #ddd;">Lenovo BIS SPOC Contact details<button
+                      type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" class="sler"
+                      style="float: right;"> <i class="fa fa-close"></i>
+                    </button>
+                  </h5>
+
+                  <div class="row">
+                    <div class="col-md-3" style="padding: 0px 0px 0px 10px;">
+                      <h5 class="owner" style="padding-bottom: 26px;">Pondy</h5>
+                      <hr class="newhr">
+                    </div>
+                    <div class="col-md-9" style="padding: 0px 10px 0px 0px;">
+                      <h6 class="ownersub"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Thiyagarajan
+
+                      </h6>
+                      <h6 class="ownersub"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;
+                        tkrishnamoor@lenovo.com
+
+                      </h6>
+                      <hr class="newhr">
+                    </div>
+                    <div class="col-md-3" style="padding: 0px 0px 0px 10px;">
+                      <h5 class="owner" style="padding-bottom: 26px;">Trading</h5>
+
+                    </div>
+                    <div class="col-md-9" style="padding: 0px 10px 0px 0px;">
+                      <h6 class="ownersub"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Neelanjan
+
+                      </h6>
+                      <h6 class="ownersub"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp; nlahiri@lenovo.com
+
+                      </h6>
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

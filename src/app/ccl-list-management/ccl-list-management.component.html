@@ -1,0 +1,148 @@
+<mat-list>
+    <mat-list-item>
+      <mat-tab-group>
+        <mat-tab label="Category">
+            <div>
+                <div class="container-fluid neewform" #content style="background-color: #fff !important; padding: 10px;">
+                    <form (submit)="managecategory()" #myForm="ngForm" style="padding-top:5%;">
+                        <div class="rowform">
+                          <div class="row">
+                              <div class="col-md-3">
+                                <div class="did-floating-label-content">
+                                    <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form.cid" style="display:none"/>
+                                  <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form.category" />
+                                  <label class="did-floating-label">
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i> Category
+                                  </label>
+                                </div>
+                              </div>
+
+                            <div class="col-3">
+                              <button class="btn submit-btn btn-md" type="submit"
+                                [disabled]="!form.category">
+                                Submit
+                              </button>
+
+                              <button class="btn reset-btn btn-md" type="button" (click)="reset()">
+                                Reset
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+              </div>
+
+
+                    <div class="hover-scroll1 col-md-12">
+                <ag-grid-angular
+                        style="width:100%; height: 370px"
+                        class="ag-theme-balham"
+                        [rowData]="Get_InwardCategorys"
+                        [columnDefs]="columnDefs"
+                        [defaultColDef]="defaultColDef"
+                        (gridReady)="onGridReady($event)"
+                      ></ag-grid-angular>
+
+                    </div>
+
+        </mat-tab>
+        <mat-tab label="Sample">
+            <div>
+                <div class="container-fluid neewform" #content style="background-color: #fff !important; padding: 10px;">
+                    <form (submit)="managesample()" #myForm="ngForm" style="padding-top:5%;">
+                        <div class="rowform">
+                          <div class="row">
+                              <div class="col-md-3">
+                                <div class="did-floating-label-content">
+                                    <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form1.sid" style="display:none"/>
+                                  <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form1.sample" />
+                                  <label class="did-floating-label">
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i> Sample
+                                  </label>
+                                </div>
+                              </div>
+
+                            <div class="col-3">
+                              <button class="btn submit-btn btn-md" type="submit"
+                                [disabled]="!form1.sample">
+                                Submit
+                              </button>
+
+                              <button class="btn reset-btn btn-md" type="button" (click)="reset()">
+                                Reset
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+              </div>
+
+
+                    <div class="hover-scroll1 col-md-12">
+                <ag-grid-angular
+                        style="width:100%; height: 370px"
+                        class="ag-theme-balham"
+                        [rowData]="Get_Inwardsamples"
+                        [columnDefs]="columnDefss"
+                        [defaultColDef]="defaultColDef"
+                        (gridReady)="onGridReady($event)"
+                      ></ag-grid-angular>
+
+                    </div>
+        </mat-tab>
+        <mat-tab label="Accessories">
+            <div>
+                <div class="container-fluid neewform" #content style="background-color: #fff !important; padding: 10px;">
+                    <form (submit)="manageaccessories()" #myForm="ngForm" style="padding-top:5%;">
+                        <div class="rowform">
+                          <div class="row">
+                              <div class="col-md-3">
+                                <div class="did-floating-label-content">
+                                    <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form2.aid" style="display:none"/>
+                                  <input class="did-floating-input" required type="text" name=""
+                                    [(ngModel)]="form2.accessories" />
+                                  <label class="did-floating-label">
+                                    <i class="fa fa-asterisk" aria-hidden="true"></i> Accessories
+                                  </label>
+                                </div>
+                              </div>
+
+                            <div class="col-3">
+                              <button class="btn submit-btn btn-md" type="submit"
+                                [disabled]="!form2.accessories">
+                                Submit
+                              </button>
+
+                              <button class="btn reset-btn btn-md" type="button" (click)="reset()">
+                                Reset
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+              </div>
+
+
+                    <div class="hover-scroll1 col-md-12">
+                <ag-grid-angular
+                        style="width:100%; height: 370px"
+                        class="ag-theme-balham"
+                        [rowData]="Get_InwardAccessoriess"
+                        [columnDefs]="columnDefsq"
+                        [defaultColDef]="defaultColDef"
+                        (gridReady)="onGridReady($event)"
+                      ></ag-grid-angular>
+
+                    </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-list-item>
+  </mat-list>

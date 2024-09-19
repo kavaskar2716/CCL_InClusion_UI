@@ -1,0 +1,15 @@
+{
+    "employees": [{
+      "id": 1,
+      "name": "Tony Stark",
+      "email": "tony@mcu.com",
+      "role": "admin",
+      "status": "active"
+    }, {
+      "id": 2,
+      "name": "riv Stark",
+      "email": "riv@mcu.com",
+      "role": "Super admin",
+      "status": "active"
+    }]
+  }

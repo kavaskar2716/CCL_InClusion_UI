@@ -1,0 +1,34 @@
+[{
+    "FinancialYears":"2022-2023",
+    "Category": "CEO",
+    "RNumber": "Permanent",
+    "Model":"Model",
+    "MarketingSeries": "Marketing Series",
+    "LeadModel": "Permanent",
+    "LeadFlag": "LeadFlag",
+    "SeriesModel": "SeriesModel",
+    "Finalize_BIS_Model_plannedOn": "2/12/2022",
+    "Finalize_BIS_Model_ActualOn": "2/12/2022",
+    "BIZApproval_PlannedOn": "2/12/2022",
+    "BIZApproval_ActualOn": "2/12/2022",
+    "callRecords": [{
+      
+        "Finalize_BIS_Model_plannedOn": "2/12/2022",
+        "Finalize_BIS_Model_ActualOn": "2/12/2022",
+        "BIZApproval_PlannedOn": "2/12/2022",
+        "BIZApproval_ActualOn": "2/12/2022",
+        "PO_Planned On": "2/12/2022",
+        "PO_Sent On": "2/12/2022",
+        "SS_Lab_PlannedOn": "2/12/2022",
+        "SS_Lab_ActualOn": "2/12/2022",
+        "Recd_Lab_Rprt_PlannedOn": "2/12/2022",
+        "Recd_Lab_Rprt_ActualOn": "2/12/2022",
+        "Test_Report_Issue planned On": "2/12/2022",
+        "Test_Report_Issue_ Actual On": "2/12/2022",
+        "Sub_Govt_PlannedOn": "2/12/2022",
+        "Sub_Govt_ActualOn": "2/12/2022",
+        "Approved_PlannedOn": "2/12/2022",
+        "Approved_Actual On": "2/12/2022"
+    }]
+    }
+]

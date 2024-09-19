@@ -1,0 +1,180 @@
+<header id="kt_header">
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top "
+    style="    background-color: #fff;    border-bottom: 1px solid #00000042;">
+    <div class="container-fluid" style=" padding-left: -0%; ">
+
+      <div class="container-xxl  d-flex align-items-stretch justify-content-between">
+
+        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
+          <a routerLink="/dashboard" class="lenovoo hidden-xs">
+            <span class="hidden-xs"><img src="assets/Image/Picture11.png" class="lenovolg" *ngIf="ActivateList==true"><img src="assets/Image/Picture11.png" class="lenovolg" style="width:11%;" *ngIf="ActivateList==false"></span> <span class="visible-xs"> L</span>
+          </a>
+
+        </div>
+        <div class="navbar-collapse" id="navbarCollapse" style="position: absolute;
+          left: 10%;
+         " *ngIf="ActivateList==false">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item " style="text-align: center;float: right;color: #fff;">
+              <a class="nav-link active" aria-current="page" routerLink="/"
+                style="text-align: center;float: right;font-family:'Segoe UI' !important;color: #2c327b;
+                font-size: 20px;
+                font-weight: 500;    padding: 4px 0px;">BIS
+                CCL INCLUSION{{this.title}}</a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="navbar-collapse" id="navbarCollapse" style="position: absolute;
+        left: 10%;
+       " *ngIf="ActivateList==true">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item " style="text-align: center;float: right;font-family: Muli,sans-serif;color: #fff;">
+            <a class="nav-link active" aria-current="page" routerLink="/"
+              style="text-align: center;float: right;font-family: 'Segoe UI' !important;color: #2c327b;
+              font-size: 20px;
+              font-weight: 500;    padding: 4px 0px;">BIS
+              CCL INCLUSION{{this.title}}</a>
+          </li>
+
+        </ul>
+      </div>
+
+      </div>
+
+
+
+
+
+
+      <div *ngIf="ActivateList==true" class="collapse navbar-collapse" id="navbarNavDarkDropdown"
+        style="padding-left: 50%;">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown dropstart">
+
+            <a class="" href="#" (click)="logout()"><i class="fa fa-power-off bisccl" style=" padding: 0px 10px 0px 6px;
+              font-size: 18px;
+              color: #2c327b;"></i></a>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="dropdown" *ngIf="ActivateList==true">
+        <button *ngIf="this.Roleid >='1'&& this.Roleid <='3'" type="button" class="dropbtn">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <button *ngIf="this.Roleid =='4' || this.Roleid =='6'" type="button" class="dropbtn">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <div class="dropdown-content">
+
+          <li style="display: none;"><a class="dropdown-item" routerLink="ccl-program"><i
+                class="fa fa-calendar bisccl"></i>CCL Program</a></li>
+
+          <li *ngIf="this.Roleid =='1' || this.Roleid == '2'|| this.Roleid == '3'|| this.Roleid == '4'|| this.Roleid == '6'"><a class="dropdown-item" routerLink="ccl-program"><i
+                class="fa fa-eye bisccl"></i>CCL View</a></li>
+                <li *ngIf="this.Roleid =='1' || this.Roleid == '2'|| this.Roleid == '3'|| this.Roleid == '4'|| this.Roleid == '6'"><a class="dropdown-item" routerLink="ccl-inclusion"><i
+                  class="fa fa-fax bisccl"></i>Add CCL Component</a></li>
+
+                  <li *ngIf="this.Roleid <='3'"><a class="dropdown-item" routerLink="bis-inward"><i
+                    class="fas fa-arrows-alt bisccl"></i>BIS Inward</a></li>
+                    <li *ngIf="this.Roleid <='3'"><a class="dropdown-item" routerLink="CCL_management"><i
+                      class="fas fa-arrows-alt bisccl"></i>CCL Management</a></li>
+                
+          <li class="viewnim" style="display:none;"> <a class="dropdown-item" href="#" (click)="logout()"><i
+                class="fa fa-power-off bisccl"></i>Logout</a></li>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<!--<div class="container-fluid dropdown page-container scrollbar" >-->
+<div class="container-fluid dropdown page-container scrollbar">
+  <!-- <button type="button" (click)="goToBottom()" style="position: absolute;
+  right: 6px;
+  background-color: #2a2a72;
+  padding: 6px 10px;
+  z-index: 99;
+  top: 10px;
+  border: 0;
+  border-radius: 10px;"><i class="fa fa-arrow-down" aria-hidden="true" style="color:#fff;"></i></button> -->
+  <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+    <div id="kt_content_container style-8" >
+
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+</div>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body fello">
+        {{idleState}}
+        <div class="row mrgbtm">
+          <div class="col-md-6">
+            <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+  <button *ngIf="isShow" (click)="gotoTop()" style="background-color: #304993 !important;
+  position: absolute;
+  bottom: 107%;
+  right: 12px;
+  padding: 10px 14px;
+  border: none;
+  /* color: #fff !important; */
+  border-radius: 16px;"><i class="fa fa-arrow-up" aria-hidden="true" style="color:#fff;"></i></button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 float-right" style="padding-left:38px;text-align: initial;width: 17%;"> <span>2022 Lenovo. All Rights Reserved</span>
+      </div>
+
+      <div class="col-sm-7 col-xs-12" style="width: 67%;">
+        <marquee class='marquee' *ngIf="ActivateList==true" width="100%" direction="left to right"
+          style="font-family: Segoe 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #386ebc; font-size: 12px;    padding-top: 8px;    font-weight: 500; ">
+          <span *ngFor="let element of BISNotification">{{element.notification}}</span>
+       </marquee>
+      </div>
+      <div class="col-sm-1">
+        <span>
+          <mat-icon class="screen" (click)="openFullscreen()" style="color:#000;">fullscreen</mat-icon>
+        </span>
+        <span>
+          <mat-icon class="screen" (click)="closeFullscreen()">fullscreen_exit</mat-icon>
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</footer>

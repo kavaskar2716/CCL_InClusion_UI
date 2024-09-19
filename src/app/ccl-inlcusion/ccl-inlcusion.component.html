@@ -1,0 +1,287 @@
+<div>
+  <h3 class="p-2 mb-3">
+    <span
+      style="display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: flex-end; color: rgb(43, 46, 118) !important;">
+      <mat-icon aria-label="home_icon" *ngIf="PlantId === '1'" routerLink="/dashboard"
+        style="color: rgb(43, 46, 118) !important; display: flex;">home</mat-icon>
+      <mat-icon aria-label="home_icon" *ngIf="PlantId === '2'" routerLink="/trading-dashboard"
+        style="color: rgb(43, 46, 118) !important; display: flex;">home</mat-icon>
+      <mat-icon aria-label="home_icon" *ngIf="PlantId === '3'" routerLink="/Guest"
+        style="color: rgb(43, 46, 118) !important; display: flex;">home</mat-icon>
+      / CCL Inclusion
+    </span>
+  </h3>
+
+  <button type="button" (click)="goToBottom()" *ngIf="content.scrollHeight > 600" class="gotobotm"
+    style="position: absolute; right: 6px; background-color: #304993; padding: 10px 14px; z-index: 99; top: 10px; border: 0; border-radius: 16px;">
+    <i class="fa fa-arrow-down" aria-hidden="true" style="color:#fff;"></i>
+  </button>
+
+  <div class="container-fluid neewform" #content style="background-color: #fff !important; padding: 10px;">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <button mat-button class="cola" onclick="refresh()">
+            <mat-icon class="importe"> import_export
+            </mat-icon>Create CCL Inclusion
+          </button>
+        </mat-expansion-panel-header>
+
+        <div class="new col-md-12">
+          <div id="viewa">
+            <div class="seven">
+              <h1>CCL Inclusion Input</h1>
+            </div>
+
+            <form (submit)="POApplication()" #myForm="ngForm">
+              <div class="rowform">
+                <div class="row">
+                  <!-- <div class="col-md-3">
+                    <div class="did-floating-label-content">
+                      <select class="did-floating-select" required  [(ngModel)]="form.MfgPlantID"
+                        name="MfgPlantID" *ngIf="PlantId === '1'">
+                        <option value="">Select MFG</option>
+                        <option *ngFor="let comp of GetMfgList" [ngValue]="comp.mfgID">
+                          {{ comp.mfgName }}
+                        </option>
+                      </select>
+
+                      <select class="did-floating-select" required  [(ngModel)]="form.MfgPlant1ID"
+                        name="MfgPlantID" *ngIf="PlantId === '2'" disabled>
+                        <option value="">Select MFG</option>
+                        <option *ngFor="let comp of GetMfgList; let i = index" [ngValue]="comp.mfgID">
+                          {{ comp.mfgName }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <label class="did-floating-label indiass" style="left: 2% !important; top: -10px;">
+                      <i class="fa fa-asterisk" aria-hidden="true"></i> MFG Name
+                    </label>
+                  </div> -->
+                  <div class="col-md-3" [ngClass]="{'disabled': this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+
+                      <select class="did-floating-select" required placeholder="Category"
+                      name="category" [(ngModel)]="form.category" (change)="Postcategory(this.form.category,this.form.product,this.form.model_For_BIS,this.form.series_Model,this.form.status)">
+                      <option value="">Select Category
+                      </option>
+                      <option *ngFor="let Catg of BISCategory" [ngValue]="Catg.category">
+                        {{Catg.category}}
+                      </option>
+                    </select>
+                      <label class="did-floating-label" style="top:-8px;">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Category
+                      </label>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-3" [ngClass]="{'disabled':  form.category == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+                      <select class="did-floating-select" required placeholder="Product"
+                      name="product" [(ngModel)]="form.product" (change)="Postcategory(this.form.category,this.form.product,this.form.model_For_BIS,this.form.series_Model,this.form.status)">
+                      <option value="">Select Product
+                      </option>
+                      <option *ngFor="let b of productdata" [ngValue]="b.product">
+                        {{b.product}}
+                      </option>
+                    </select>
+
+                      <label class="did-floating-label" style="top:-8px;">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Product
+                      </label>
+                    </div>
+
+                  </div>
+                    <div class="col-md-3 ledb"  [ngClass]="{'disabled': form.product == '' ||this.Roleid >= '4'}">
+                      <div class="did-floating-label-content">
+                        <ng-multiselect-dropdown
+                          [settings]="dropdownSettings"
+                          [data]="dropdownList"
+                          [(ngModel)]="form.model_For_BIS"
+                          (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="onItemDeSelect($event)">
+                        </ng-multiselect-dropdown>
+                        <!-- <label class="did-floating-label" required>
+                          <i class="fa fa-asterisk" aria-hidden="true"></i> Select Model_For_BIS
+                        </label> -->
+                      </div>
+                    </div>
+                    <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                      <div class="did-floating-label-content">
+                        <select class="did-floating-select" required placeholder="Product"
+                        name="series_Model" [(ngModel)]="form.series_Model" (change)="Postcategory(this.form.category,this.form.product,this.form.model_For_BIS,this.form.series_Model,this.form.status)">
+                        <option value="">Select series_Model
+                        </option>
+                        <option *ngFor="let s of serdata" [ngValue]="s.series_Model">
+                          {{s.series_Model}}
+                        </option>
+                      </select>
+
+                        <label class="did-floating-label" style="top:-8px;">
+                          <i class="fa fa-asterisk" aria-hidden="true"></i>Series Model
+                        </label>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-3 ledb" *ngIf="mobis1 || this.form.ccL_ID > 0 " [ngClass]="{'disabled': form.category == '' ||this.Roleid >= '4'}">
+                      <div class="did-floating-label-content">
+                        <input
+                          class="did-floating-input"
+                          required
+                          type="text"
+                          name="model_For_BIS"
+                          [(ngModel)]="form.model_For_BIS"
+                          (onChange)="leadmodel(form.model_For_BIS)"/>
+                        <label class="did-floating-label">
+                          <i class="fa fa-asterisk" aria-hidden="true"></i> Model_For_BIS
+                        </label>
+                      </div>
+                    </div> -->
+
+
+                    <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                      <div class="did-floating-label-content">
+                        <input class="did-floating-input" required type="text" name="complaince_ID"
+                          [(ngModel)]="form.complaince_ID" [disabled]="form.category == ''"/>
+                        <label class="did-floating-label">
+                          <i class="fa fa-asterisk" aria-hidden="true"></i> complaince_ID
+                        </label>
+                      </div>
+                    </div>
+
+
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+                      <input class="did-floating-input" type="text" name="fy" [(ngModel)]="form.fy" [disabled]="form.biS_Inclusion_ID === 0"/>
+                      <label class="did-floating-label">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> FY
+                      </label>
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+
+                    <div class="did-floating-label-content">
+                      <input class="did-floating-input" type="text" name="ccL_ID" [(ngModel)]="form.ccL_ID" hidden />
+                      <input class="did-floating-input" type="text" name="biS_Inclusion_ID"
+                        [(ngModel)]="form.biS_Inclusion_ID"/>
+                        <label class="did-floating-label">
+                          <i class="fa fa-asterisk" aria-hidden="true"></i> BIS Inclusion ID
+                        </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+                      <select class="did-floating-select" required  name="status"
+                        [(ngModel)]="form.status"
+                       >
+
+                      <option *ngFor="let t of statdata" [ngValue]="t.status">
+                        {{t.status}}
+                      </option>
+
+                      </select>
+                      <label class="did-floating-label" required style="top: -8px;">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Status
+                      </label>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+
+                        <select class="did-floating-select" required onclick="this.setAttribute('value', this.value);"
+                      onchange="this.setAttribute('value', this.value);" value="" name="components" [(ngModel)]="form.components" [disabled]="form.biS_Inclusion_ID === 0">
+                <option value=''>
+                  <i class="fa fa-asterisk" aria-hidden="true"></i>Select Component
+                </option>
+                <option *ngFor="let c of CCL_Component_List" [value]="c.component">
+                  {{c.component}}
+                </option>
+              </select>
+                      <label class="did-floating-label" required style="top: -8px;">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Components
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+
+                      <input class="did-floating-input" required type="text" name="component_Model"
+                        [(ngModel)]="form.component_Model" [disabled]="form.category == ''"/>
+                      <label class="did-floating-label">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Component Model
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+                      <input class="did-floating-input" required type="text" name="manufacturer"
+                        [(ngModel)]="form.manufacturer" [disabled]="form.biS_Inclusion_ID === 0"/>
+                      <label class="did-floating-label">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i> Manufacturer
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == '' || this.Roleid >= '4' }">
+                    <div class="did-floating-label-content">
+                      <input class="did-floating-input" type="text" name="technical_Data"
+                        [(ngModel)]="form.technical_Data" required [disabled]="form.biS_Inclusion_ID === 0"/>
+                      <label class="did-floating-label"> <i class="fa fa-asterisk" aria-hidden="true"></i> Technical Data</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="{'disabled': form.model_For_BIS == ''}">
+                    <div class="did-floating-label-content">
+                      <input class="did-floating-input" type="text" name="lenovo_Part_Number"
+                        [(ngModel)]="form.lenovo_Part_Number" required [disabled]="form.biS_Inclusion_ID === 0"/>
+                      <label class="did-floating-label">Lenovo Part Number</label>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <button class="btn submit-btn btn-md" type="submit"
+                      [disabled]="!form.category || !form.product">
+                      Submit
+                    </button>
+
+                    <button class="btn reset-btn btn-md" type="button" (click)="reset()">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+      <!-- </fieldset> -->
+      <div class="seven">
+        <h1>Overall Report
+        </h1>
+      </div>
+      <div class="hover-scroll1 col-md-12">
+  <ag-grid-angular
+          style="width:100%; height: 370px"
+          class="ag-theme-balham"
+          [rowData]="POMasterLists"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          (gridReady)="onGridReady($event)"
+        ></ag-grid-angular>
+
+      </div>
