@@ -171,6 +171,7 @@ export class CclInlcusionComponent implements OnInit {
   serdata: any;
   fydata: any;
   statdata: any;
+  Get_InwardCategorys: any;
   constructor(
     private authService: AuthService,
     private service: SharedService,
@@ -208,6 +209,7 @@ export class CclInlcusionComponent implements OnInit {
   ngOnInit(): void {
     // this.GetKeyFiltersBy_Product();
     // this.GetMfgPlantList();
+    this.GetCategory();
 this.Get_CCL_Component_List();
     this.EnableAppHeaderMenuList();
     this.PlantId = localStorage.getItem("PlantId");
@@ -235,7 +237,12 @@ this.Get_CCL_Component_List();
       defaultToolPanel: "columns",
     },
   };
-
+  GetCategory() {
+    this.service.Get_InwardCategory().subscribe(response => {
+      // Auto increment SNO
+      this.Get_InwardCategorys = response.table
+    });
+  }
   ExportTOExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(
       this.TABLE.nativeElement,
